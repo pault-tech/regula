@@ -1,22 +1,41 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/go
 {
-	"name": "Go",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/go:0-1-bullseye"
-
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "go version",
-
-	// Configure tool-specific properties.
-	// "customizations": {},
-
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  //  "image": "mcr.microsoft.com/devcontainers/python:0-3.10", //NOTE: does not include sshd
+  // "image": "mcr.microsoft.com/devcontainers/go:0-1-bullseye"
+  "features": {
+    // uncomment for sshd in python
+    //"ghcr.io/devcontainers/features/sshd:1": {"version": "latest"}       
+  },
+  "customizations": {
+    "codespaces": {
+      "repositories": {
+        "pault-tech/*": {
+          "permissions": "write-all"
+        }
+      }
+    },
+    "vscode": {
+      "settings": {
+        //spacemacs in terminal tweaks 
+        "terminal.integrated.commandsToSkipShell": [
+          "-workbench.action.terminal.goToRecentDirectory", //send ctrl+g to terminal and spacemacs (not go to recent directory)
+          "-workbench.action.terminal.focusFind", //ctrl+f
+          "-workbench.action.terminal.clear", //ctrl+k
+          "-workbench.action.terminal.qukickOpen" //ctrl+p
+        ],
+        "workbench.panel.opensMaximized": "always",
+        "terminal.integrated.allowChords": false
+      },
+      "extensions": [
+        // uncomment for vim
+        // "vscodevim.vim"
+        //"VSpaceCode.vspacecode"
+        //
+        // "ms-dotnettools.vscode-dotnet-runtime",
+        // "ms-toolsai.datawrangler",
+        //
+        "golang.Go"
+      ]
+    }
+  }
 }
